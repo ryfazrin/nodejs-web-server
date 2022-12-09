@@ -10,25 +10,33 @@ const requestListener = (request, response) => {
   response.setHeader('Content-type', 'text/html');
   response.statusCode = 200;
 
-  const { method } = request;
+  const { method, url } = request;
 
-  if (method === 'GET') {
-    response.end('<h1>Hello!</h1>');
+  if (url === '/') {
+    // TODO 2: logika respons bila url bernilai '/'
+  } else if (url === '/about') {
+    // TODO 3: logika respons bila url bernilai '/about'
+  } else {
+    // TODO 1: logika respons bila url bukan '/' atau '/about'
   }
 
-  if (method === 'POST') {
-    let body = [];
+  // if (method === 'GET') {
+  //   response.end('<h1>Hello!</h1>');
+  // }
 
-    request.on('data', (chunk) => {
-      body.push(chunk);
-    });
+  // if (method === 'POST') {
+  //   let body = [];
 
-    request.on('end', () => {
-      body = Buffer.concat(body).toString();
-      const { name } = JSON.parse(body);
-      response.end(`<h1>Hai, ${name}!</h1>`);
-    });
-  }
+  //   request.on('data', (chunk) => {
+  //     body.push(chunk);
+  //   });
+
+  //   request.on('end', () => {
+  //     body = Buffer.concat(body).toString();
+  //     const { name } = JSON.parse(body);
+  //     response.end(`<h1>Hai, ${name}!</h1>`);
+  //   });
+  // }
 };
  
 const server = http.createServer(requestListener);
