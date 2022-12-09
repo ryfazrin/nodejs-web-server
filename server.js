@@ -7,7 +7,10 @@ const http = require('http');
  * @param response: objek yang digunakan untuk menanggapi permintaan
  */
 const requestListener = (request, response) => {
-    
+  response.setHeader('Content-type', 'text/html');
+
+  response.statusCode = 200;
+  response.end('<h1>Halo HTTP Server!</h1>');
 };
  
 const server = http.createServer(requestListener);
